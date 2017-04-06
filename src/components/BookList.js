@@ -3,34 +3,25 @@ import React from 'react';
 import BookListItem from './BookListItem';
 
 class BookList extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      books: []
-    };
-  }
-
-  componentDidMount() {
-    fetch('http://localhost:4730/books')
-    .then(response => response.json())
-    .then((books) => {
-      this.setState({
-        books: books
-      })
-    })
-    .catch(console.error.bind(console));
-  }
-
   render() {
+    if (this.props.books.length === 0) {
+      return (
+        <p>No books, yet.</p>
+      );
+    }
+
     return (
       <ul>
-        {this.state.books.map((book, index) => {
+        {this.props.books.map((book, index) => {
           return <BookListItem key={index} book={book} />
         })}
       </ul>
     );
   }
 }
+
+BookList.propTypes = {
+  books: React.PropTypes.array.isRequired
+};
 
 export default BookList;
