@@ -5,6 +5,7 @@ import './App.css';
 
 import Counter from './components/Counter';
 import BookList from './components/BookList';
+import BookDetail from './components/BookDetail';
 
 class App extends Component {
 
@@ -18,7 +19,8 @@ class App extends Component {
           <li><Link to="/books">Books</Link></li>
         </ul>
         <Route path="/counter" component={Counter}/>
-        <Route path="/books" component={BookList}/>
+        <Route exact path="/books" component={BookList}/>
+        <Route path="/books/:id" component={BookDetail}/>
       </div>
     );
   }
